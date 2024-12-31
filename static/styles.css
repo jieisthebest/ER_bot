@@ -1,0 +1,53 @@
+.centered
+{
+    text-align: center;
+}
+
+body
+{
+    width: 100%;
+    text-align: center;
+    background-color: #202124;
+    color: #E8EAED;
+}
+
+li
+{
+    font-size: large;
+    color: rgb(237, 237, 237);
+    text-align: left;
+}
+
+ul
+{
+    text-align: center;
+}
+
+h1,h2,h3,p
+{
+    color: #E8EAED;
+}
+
+.answer
+{
+    display: none;
+}
+
+body.day-mode {
+    background-color: #E8EAED;
+    color: #202124;
+}
+
+h1.day-mode, h2.day-mode, h3.day-mode, p.day-mode,li.day-mode {
+    color: #202124;
+}
+
+.footer{
+    position: fixed; bottom:0; width:100%;
+}
+
+.fit-picture {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
