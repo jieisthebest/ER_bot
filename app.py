@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from datetime import datetime
 
 #app name
 app = Flask(__name__)
@@ -6,6 +7,12 @@ app = Flask(__name__)
 #database configuration
 triage_db = SQL("sqlite:///triage.db")
 patient_db = SQL("sqlite:///patient.db")
+
+
+
+@app.template_filter('format_date')
+def format_date(value, format='%Y-%m-%d %H:%M:%S'):
+    return datetime.strptime(value, '%Y-%m-%d %H:%M:%S').strftime(format)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -20,21 +27,24 @@ def triage():
         gender = request.form.get("gender")
         symptom = request.form.get("symptom")
         severity = request.form.get("severity")
-
+        patient_log = symptom
         #add user to database
-        patient_db.execute("INSERT INTO patients (name, gender) VALUES (?, ?)", name, gender)
+        patient_db.execute("INSERT INTO patients (name, gender, patient_log, date, age) VALUES (?, ?, ?, CURRENT_TIMESTAMP,?)", name, gender,patient_log,age)
+        #creates array of matched item to table
+        results=[]
+        #break query of user symptom into words to iterrate and search
+        symptoms = symptom.split()
+        for s in symptoms:
+            subquery = "SELECT id FROM triage WHERE symptom LIKE %s" % ("%" + s + "%")
+            results.extend(triage_db.execute(subquery).fetchall())
 
-
-        # search in database for symptoms
-        search = triage_db.execute("SELECT * FROM triage WHERE symptom LIKE ?","%" + symptom +"%")
-        if len(search)<=0:
+        if len(results)<=0:
             flash(f"Sorry did not find your symptom{symptom}!")
+            # insert a unknown symptom or case at id=0
             return redirect("/index")
         else:
-            for row in search:
-                patient_db.execute("INSERT INTO symptom_details("SELECT id FROM triage WHERE symptom LIKE ?","%" + symptom +"%")
-
-        # add symptoms
+            for t in results:
+                patient_db.execute("INSERT INTO symptom_details VALUES (?,?)", (t['id']))
 
     else:
         return render_template("triage.html")
