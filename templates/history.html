@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+
+{% block main %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Transaction Type</th>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>patient</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if transactions %}
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.transaction_type }}</td>
+                        <td>{{ transaction.symbol }}</td>
+                        <td>{{ transaction.shares }}</td>
+                        <td>{{ transaction.price | usd  }}</td>
+                        <td>{{ (transaction.price * transaction.shares) | usd  }}</td>
+                        <td>{{ transaction.date | format_date('%Y-%m-%d %H:%M:%S') }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center">No history found.</td>
+                </tr>
+
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

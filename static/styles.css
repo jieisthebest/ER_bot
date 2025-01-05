@@ -51,3 +51,10 @@ h1.day-mode, h2.day-mode, h3.day-mode, p.day-mode,li.day-mode {
     height: auto;
     max-width: 100%;
 }
+
+.navbar {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

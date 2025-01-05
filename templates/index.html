@@ -1,5 +1,13 @@
 {% extends "layout.html" %}
 
-{% block body %}
+{% block title %}
+    Web MD search
+{% endblock %}
 
+{% block main %}
+<img id="mode-image"  alt="generic doctor" src="static/doctorN.png" class="centered">
+<form action="https://openmd.com/search" method="get" class="centered">
+    <input name="q" autofocus placeholder="symptoms, diseases, etc" type="search" >
+    <input type="submit" value="OpenMD search">
+</form>
 {% endblock %}

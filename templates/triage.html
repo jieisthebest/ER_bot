@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Triage
+{% endblock %}
+
+{% block main %}
+    <form action="/triage" method="post">
+        <div class="form-group">
+            <h1>Triage form, please complete</h1>
+            <h2>Name</h2>
+            <input autocomplete="off" autofocus class="form-control" name="name" required placeholder="First and Last Name" type="text">
+            <h2>Age</h2>
+            <select name="age" required>
+                <option disabled selected value="">Age</option>
+                {% for age in AGE %}
+                    <option value="{{ age }}">{{ age }}</option>
+                {% endfor %}
+            </select>
+            <h2>Gender</h2>
+            <select name="gender" required>
+                <option disabled selected value="">Gender</option>
+                {% for gender in GENDER %}
+                    <option value="{{ gender }}">{{ gender }}</option>
+                {% endfor %}
+            </select>
+            <h2>Symptoms</h2>
+            <h3>Please enter your symptoms using keywords and space</h3>
+            <h3>For example:  Fever Chest Pain ...</h3>
+            <input autocomplete="off" autofocus class="form-control" name="symptom" placeholder="Enter symptom words with space" type="text" required>
+            <h2>Severity of your symptoms overall, choose your worst symptom level</h2>
+            <h3>1:Symptom(s) barely noticeable example: runny nose, low fever</h3>
+            <h3>2:Symptom(s) affects functioning eg difficulty swallowing, mid fever, lethargy </h3>
+            <h3>3:Symptom(s) impairs siginficantly eg cannot breathe, cannot walk, cannot eat</h3>
+            <select name="severity" required>
+                <option disabled selected value="">Severity</option>
+                {% for severity in SEVERITY %}
+                    <option value="{{ severity }}">{{ severity }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+{% endblock %}
