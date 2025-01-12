@@ -50,6 +50,7 @@ def triage_processor():
 
     patient_log = symptom
     # add user to database
+    # TODO check cs50 sql statements do they add up with flow ???? placeholder error
     patient_db.execute("INSERT INTO patients (name, gender, age, date, patient_log) VALUES (?, ?, ?, CURRENT_TIMESTAMP, ?)", (name, gender, age, patient_log))
     conn.commit()
     #grabs ID from the recently created user for patient_id
