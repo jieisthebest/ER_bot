@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect
 from datetime import datetime
-from cs50 import SQL
+import sqlite3
 
 
 
@@ -12,8 +12,8 @@ GENDER = ["Male", "Female", "Other"]
 SEVERITY=["1","2","3"]
 
 # database configuration
-triage_db = SQL("sqlite:///triage.db")
-patient_db = SQL("sqlite:///patient.db")
+triage_db = sqlite3.connect('triage.db')
+patient_db = sqlite3.connect('patient.db')
 
 
 @app.template_filter('format_date')
@@ -81,6 +81,7 @@ def triage_processor():
         patient_db.execute("INSERT INTO patients (name, gender, age, date, patient_log) VALUES (?, ?, ?, CURRENT_TIMESTAMP, ?)", (name, gender, age, patient_log))
         # grabs ID from the recently created user for patient_id
         patient_id = patient_db.execute("SELECT last_insert_rowid()").fetchone()[0]
+        patient_db.commmit()
     except Exception as e:
 
         return redirect("/triage")
