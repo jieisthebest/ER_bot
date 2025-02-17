@@ -1,5 +1,5 @@
-# YOUR PROJECT TITLE
-#### Video Demo:  <URL HERE>
+# ER triage BOT
+#### Video Demo:  [<URL HERE>](https://www.youtube.com/watch?v=0I5oR69BHyA)
 #### Description:
 Trying to simulate a ER triage system by going through to determine if immediate medical attention is needed or not.Code used is flask,Llama3, Copilot and HTML,CSS. I used mostly old codes and edited them to solve the problem.Obviously it is not accurate nor do I have the skill to implement ML on data nor hands on large enough data set to draw relevant conclusion so I had to settle with a dictionary search ending with a extra back end just in case it could not handle using OPEN MD as search. 
 
