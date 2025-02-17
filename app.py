@@ -1,13 +1,15 @@
 from flask import Flask, render_template, request, flash, redirect
 from datetime import datetime
 import sqlite3
+from flask import Flask, url_for, render_template, request, redirect, g
+from datetime import datetime
 
 
 
 # app name
 app = Flask(__name__)
 
-#Datasets
+# Datasets
 GENDER = ["Male", "Female", "Other"]
 SEVERITY=["1","2","3"]
 
@@ -56,6 +58,10 @@ def triage():
         return triage_processor()
     else:
         return render_template("triage.html", GENDER=GENDER, SEVERITY=SEVERITY)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6195e77 (finished polishing UI and SQL flow is working now)
 
 def triage_processor():
     name = request.form.get("name")

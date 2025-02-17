@@ -7,31 +7,31 @@
 {% block main %}
     <form action="/triage" method="post">
         <div class="form-group">
-            <h1>Triage form, please complete</h1>
-            <h2>Name</h2>
+            <h5>Triage form, please complete</h5>
+            <h6>Name</h6>
             <input autocomplete="off" autofocus class="form-control" name="name" required placeholder="First and Last Name" type="text">
-            <h2>Age</h2>
-            <select name="age" required>
-                <option disabled selected value="">Age</option>
-                {% for age in AGE %}
-                    <option value="{{ age }}">{{ age }}</option>
-                {% endfor %}
-            </select>
-            <h2>Gender</h2>
+            <h6>Age</h6><input autocomplete="off" class="form-control" name="age" required placeholder="Age" type="integer" min="0" max="130" width: 100;>
+            <h6>Gender</h6>
             <select name="gender" required>
                 <option disabled selected value="">Gender</option>
                 {% for gender in GENDER %}
                     <option value="{{ gender }}">{{ gender }}</option>
                 {% endfor %}
             </select>
-            <h2>Symptoms</h2>
-            <h3>Please enter your symptoms using keywords and space</h3>
-            <h3>For example:  Fever Chest Pain ...</h3>
-            <input autocomplete="off" autofocus class="form-control" name="symptom" placeholder="Enter symptom words with space" type="text" required>
-            <h2>Severity of your symptoms overall, choose your worst symptom level</h2>
-            <h3>1:Symptom(s) barely noticeable example: runny nose, low fever</h3>
-            <h3>2:Symptom(s) affects functioning eg difficulty swallowing, mid fever, lethargy </h3>
-            <h3>3:Symptom(s) impairs siginficantly eg cannot breathe, cannot walk, cannot eat</h3>
+            <h6>Symptoms</h6>
+            <h10>Enter symptoms keywords with space</h10>
+            <h11>For example:  Fever Chest Pain ...</h11>
+            <input autocomplete="off" autofocus class="form-control" name="symptom" placeholder="Symptom(s)" type="text" required>
+            <h10>Select the worst symptom level</h10>
+            <div class="centered-container">
+                <h10>Level 1: barely noticeable: runny nose...</h10>
+                <div></div>
+                <h10>Level 2: noticeable: difficulty swallowing, mid fever, lethargy...</h10>
+                <div></div>
+                <h10>Level 3: extreme: cannot move, cannot eat...</h10>
+                <div></div>
+            </div>
+
             <select name="severity" required>
                 <option disabled selected value="">Severity</option>
                 {% for severity in SEVERITY %}

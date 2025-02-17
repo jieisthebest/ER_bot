@@ -1,5 +1,37 @@
 {% extends "layout.html" %}
 
 {% block body %}
+    <h2 class="mt-4">Diagnosis Results for {{ patient.name }}</h2>
+{% endblock %}
 
+{% block main %}
+<div class="container mt-4">
+    <h3>Patient Details</h3>
+    <p><strong>Name:</strong> {{ patient.name }}</p>
+    <p><strong>Age:</strong> {{ patient.age }}</p>
+    <p><strong>Gender:</strong> {{ patient.gender }}</p>
+    <p><strong>Date:</strong> {{ patient.date }}</p>
+
+    <h3>Diagnosis Details</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Symptom</th>
+                <th>Location</th>
+                <th>Severity</th>
+                <th>ER Visit Required</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr {% if result['er_visit_required'] == 1 %}style="background-color: #b22222; color: #ffffff;"{% endif %}>
+                <td>{{ result['symptom'] }}</td>
+                <td>{{ result['location'] }}</td>
+                <td>{{ result['severity'] }}</td>
+                <td>{% if result['er_visit_required'] == 1 %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

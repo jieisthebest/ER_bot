@@ -58,3 +58,20 @@ h1.day-mode, h2.day-mode, h3.day-mode, p.day-mode,li.day-mode {
     bottom: 0;
     width: 100%;
 }
+
+input.form-control {
+    width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.centered-container {
+    width: 50%; /* Adjust the width as needed */
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 12%; /* Adjust padding to center content */
+}
+
+.table {
+    text-align: center;
+}
